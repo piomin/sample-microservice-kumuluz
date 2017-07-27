@@ -1,7 +1,7 @@
 kumuluzee:
   env: dev
   version: 1.0.0
-  base-url: http://localhost:8081
+  base-url: http://localhost:8080
   discovery:
     etcd:
       hosts: http://192.168.99.100:2379

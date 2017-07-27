@@ -10,7 +10,9 @@
         <Logger name="pl.piomin.services.kumuluz.account.resource.AccountResource" level="trace" additivity="false">
             <AppenderRef ref="console"/>
         </Logger>
-
+<Logger name="com.kumuluz.ee" level="trace" additivity="false">
+            <AppenderRef ref="console"/>
+        </Logger>
         <!-- Default logger -->
         <Root level="info">
             <AppenderRef ref="console"/>
