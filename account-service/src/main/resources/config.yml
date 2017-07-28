@@ -8,3 +8,12 @@ kumuluzee:
       hosts: http://192.168.99.100:8500
     ttl: 20
     ping-interval: 15
+  config:
+    start-retry-delay-ms: 500
+    max-retry-delay-ms: 900000
+    consul:
+      agent: http://192.168.99.100:8500
+      hosts: http://192.168.99.100:8500
+    
+rest-config:
+  blacklist: 

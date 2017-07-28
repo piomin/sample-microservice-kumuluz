@@ -6,7 +6,7 @@
 		<artifactId>sample-microservice-kumuluz</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>account-service</artifactId>
+	<artifactId>customer-service</artifactId>
 
 	<dependencies>
 		<dependency>
@@ -73,4 +73,5 @@
 			</plugin>
 		</plugins>
 	</build>
+	
 </project>

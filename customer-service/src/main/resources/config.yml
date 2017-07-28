@@ -1,0 +1,10 @@
+kumuluzee:
+  service-name: customer-service
+  env: dev
+  version: 1.0.0
+  discovery:
+    consul:
+      agent: http://192.168.99.100:8500
+      hosts: http://192.168.99.100:8500
+    ttl: 20
+    ping-interval: 15

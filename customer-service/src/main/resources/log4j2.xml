@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration name="customers">
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d %p %marker %m %X %ex %n" />
+		</Console>
+	</Appenders>
+	<Loggers>
+		<Logger
+			name="pl.piomin.services.kumuluz.customer.resource.CustomerResource"
+			level="trace" additivity="false">
+			<AppenderRef ref="console" />
+		</Logger>
+		<Logger name="com.kumuluz.ee" level="trace" additivity="true">
+			<AppenderRef ref="console" />
+		</Logger>
+		<Root level="info">
+			<AppenderRef ref="console" />
+		</Root>
+	</Loggers>
+</Configuration>

@@ -1,6 +1,7 @@
 package pl.piomin.services.kumuluz.account.resource;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,6 +12,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.kumuluz.ee.configuration.utils.ConfigurationUtil;
 import com.kumuluz.ee.logs.cdi.Log;
 import com.kumuluz.ee.logs.cdi.LogParams;
 
@@ -23,8 +25,9 @@ public class AccountResource {
 
 	private List<Account> accounts;
 	
-//	protected Logger logger = Logger.getLogger(Api.class.getName());
-	
+//    @Inject
+//    private AccountConfiguration properties;
+    
 	public AccountResource() {
 		accounts = new ArrayList<>();
 		accounts.add(new Account(1, 1, "111111"));
@@ -40,7 +43,6 @@ public class AccountResource {
 	@Path("{number}")
 	@Log(value = LogParams.METRICS, methodCall = true)
 	public Account findByNumber(@PathParam("number") String number) {
-//		logger.info(String.format("Account.findByNumber(%s)", number));
 		return accounts.stream().filter(it -> it.getNumber().equals(number)).findFirst().get();
 	}
 	
@@ -48,15 +50,16 @@ public class AccountResource {
 	@Path("customer/{customer}")
 	@Log(value = LogParams.METRICS, methodCall = true)
 	public List<Account> findByCustomer(@PathParam("customer") Integer customerId) {
-//		logger.info(String.format("Account.findByCustomer(%s)", customerId));
 		return accounts.stream().filter(it -> it.getCustomerId().intValue()==customerId.intValue()).collect(Collectors.toList());
 	}
 	
 	@GET
 	@Log(value = LogParams.METRICS, methodCall = true)
 	public List<Account> findAll() {
-//		logger.info("Account.findAll()");
-		return accounts;
+		final String blacklist = ConfigurationUtil.getInstance().get("rest-config.blacklist").orElse("nope");
+		final String[] ids = blacklist.split(",");
+		final List<Integer> blacklistIds = Arrays.asList(ids).stream().map(it -> new Integer(it)).collect(Collectors.toList());
+		return accounts.stream().filter(it -> !blacklistIds.contains(it.getId())).collect(Collectors.toList());
 	}
 	
 }
