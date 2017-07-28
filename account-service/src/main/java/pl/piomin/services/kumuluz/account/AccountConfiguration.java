@@ -10,14 +10,14 @@ import com.kumuluz.ee.configuration.cdi.ConfigValue;
 public class AccountConfiguration {
 
     @ConfigValue(watch = true)
-    private String stringProperty;
-    
-    public String getStringProperty() {
-        return stringProperty;
-    }
+    private String blacklist;
 
-    public void setStringProperty(String stringProperty) {
-        this.stringProperty = stringProperty;
-    }
+	public String getBlacklist() {
+		return blacklist;
+	}
+
+	public void setBlacklist(String blacklist) {
+		this.blacklist = blacklist;
+	}
     
 }
