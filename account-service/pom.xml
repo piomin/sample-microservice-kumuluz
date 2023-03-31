@@ -42,7 +42,7 @@
 		<dependency>
 			<groupId>com.kumuluz.ee.logs</groupId>
 			<artifactId>kumuluzee-logs-log4j2</artifactId>
-			<version>1.2.0</version>
+			<version>1.4.6</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
