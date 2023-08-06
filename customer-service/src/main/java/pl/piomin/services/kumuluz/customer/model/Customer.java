@@ -4,61 +4,61 @@ import java.util.List;
 
 public class Customer {
 
-	private Integer id;
-	private String pesel;
-	private String name;
-	private CustomerType type;
-	private List<Account> accounts;
+    private Integer id;
+    private String pesel;
+    private String name;
+    private CustomerType type;
+    private List<Account> accounts;
 
-	public Customer() {
-		
-	}
-	
-	public Customer(Integer id, String pesel, String name, CustomerType type) {
-		this.id = id;
-		this.pesel = pesel;
-		this.name = name;
-		this.type = type;
-	}
+    public Customer() {
 
-	public Integer getId() {
-		return id;
-	}
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public Customer(Integer id, String pesel, String name, CustomerType type) {
+        this.id = id;
+        this.pesel = pesel;
+        this.name = name;
+        this.type = type;
+    }
 
-	public String getPesel() {
-		return pesel;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setPesel(String pesel) {
-		this.pesel = pesel;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getPesel() {
+        return pesel;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setPesel(String pesel) {
+        this.pesel = pesel;
+    }
 
-	public CustomerType getType() {
-		return type;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setType(CustomerType type) {
-		this.type = type;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public List<Account> getAccounts() {
-		return accounts;
-	}
+    public CustomerType getType() {
+        return type;
+    }
 
-	public void setAccounts(List<Account> accounts) {
-		this.accounts = accounts;
-	}
+    public void setType(CustomerType type) {
+        this.type = type;
+    }
+
+    public List<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
+    }
 
 }

@@ -27,42 +27,42 @@ import pl.piomin.services.kumuluz.customer.model.CustomerType;
 @RequestScoped
 public class CustomerResource {
 
-	private List<Customer> customers;
+    private List<Customer> customers;
 
-	@Inject
-	@DiscoverService(value = "account-service", version = "1.0.x", environment = "dev")
-	private WebTarget target;
+    @Inject
+    @DiscoverService(value = "account-service", version = "1.0.x", environment = "dev")
+    private WebTarget target;
 
-	public CustomerResource() {
-		customers = new ArrayList<>();
-		customers.add(new Customer(1, "12345", "Adam Kowalski", CustomerType.INDIVIDUAL));
-		customers.add(new Customer(2, "12346", "Anna Malinowska", CustomerType.INDIVIDUAL));
-		customers.add(new Customer(3, "12347", "Paweł Michalski", CustomerType.INDIVIDUAL));
-		customers.add(new Customer(4, "12348", "Karolina Lewandowska", CustomerType.INDIVIDUAL));
-	}
+    public CustomerResource() {
+        customers = new ArrayList<>();
+        customers.add(new Customer(1, "12345", "Adam Kowalski", CustomerType.INDIVIDUAL));
+        customers.add(new Customer(2, "12346", "Anna Malinowska", CustomerType.INDIVIDUAL));
+        customers.add(new Customer(3, "12347", "Paweł Michalski", CustomerType.INDIVIDUAL));
+        customers.add(new Customer(4, "12348", "Karolina Lewandowska", CustomerType.INDIVIDUAL));
+    }
 
-	@GET
-	@Path("pesel/{pesel}")
-	@Log(value = LogParams.METRICS, methodCall = true)
-	public Customer findByPesel(@PathParam("pesel") String pesel) {
-		return customers.stream().filter(it -> it.getPesel().equals(pesel)).findFirst().get();
-	}
+    @GET
+    @Path("pesel/{pesel}")
+    @Log(value = LogParams.METRICS, methodCall = true)
+    public Customer findByPesel(@PathParam("pesel") String pesel) {
+        return customers.stream().filter(it -> it.getPesel().equals(pesel)).findFirst().get();
+    }
 
-	@GET
-	@Log(value = LogParams.METRICS, methodCall = true)
-	public List<Customer> findAll() {
-		return customers;
-	}
+    @GET
+    @Log(value = LogParams.METRICS, methodCall = true)
+    public List<Customer> findAll() {
+        return customers;
+    }
 
-	@GET
-	@Path("{id}")
-	@Log(value = LogParams.METRICS, methodCall = true)
-	public Customer findById(@PathParam("id") Integer id) {
-		Customer customer = customers.stream().filter(it -> it.getId().intValue() == id.intValue()).findFirst().get();
-		WebTarget t = target.path("v1/accounts/customer/" + customer.getId());
-		List<Account> accounts = t.request().buildGet().invoke(List.class);
-		customer.setAccounts(accounts);
-		return customer;
-	}
+    @GET
+    @Path("{id}")
+    @Log(value = LogParams.METRICS, methodCall = true)
+    public Customer findById(@PathParam("id") Integer id) {
+        Customer customer = customers.stream().filter(it -> it.getId().intValue() == id.intValue()).findFirst().get();
+        WebTarget t = target.path("v1/accounts/customer/" + customer.getId());
+        List<Account> accounts = t.request().buildGet().invoke(List.class);
+        customer.setAccounts(accounts);
+        return customer;
+    }
 
 }
